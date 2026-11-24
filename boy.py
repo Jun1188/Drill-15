@@ -146,10 +146,9 @@ class Boy:
                     1 if self.item == 'Ball' else 2)
         game_world.add_oject(ball, 0)
         
-        for o in game_world.world[1]:
-                        if (type(o) == Zombie):
-                            print("add coll")
-                            game_world.add_collision_pair('zombie:ball', ball, o)
+        for z in game_world.world[1]:
+                        if (type(z) == Zombie):
+                            game_world.add_collision_pair('zombie:ball', ball, z)
         
 
     def pause(self):
@@ -196,4 +195,6 @@ class Boy:
     def handle_collision(self, group, other):
         if group == 'boy:ball':
             self.ball_count += 1
+        if group == "boy:zombie":
+                    game_framework.quit()
             

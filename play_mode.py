@@ -29,9 +29,8 @@ def init():
     global balls
     global grass
     global zombie
-    zombie = [Zombie() for i in range(5)]
-    for z in zombie:
-        game_world.add_oject(z)
+    zombies = [Zombie() for i in range(4)]
+    game_world.add_objects(zombies, 1)
 
     boy = Boy()
     game_world.add_oject(boy)
@@ -44,11 +43,12 @@ def init():
 
     #소년과 볼 사이 충돌 페어 등록
     game_world.add_collision_pair('boy:ball', boy, None)
-    game_world.add_collision_pair('boy:zombie', boy, None)
+
+    for zombie in zombies:
+        game_world.add_collision_pair('boy:zombie', boy, zombie) 
     for ball in balls:
         game_world.add_collision_pair('boy:ball', None, ball)
-    for z in zombie:
-        game_world.add_collision_pair('boy:zombie', None, z)
+    
 
 def pause():
     boy.pause()
