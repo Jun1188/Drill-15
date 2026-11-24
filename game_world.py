@@ -1,5 +1,8 @@
 from tokenize import group
 
+import ball 
+import zombie 
+
 
 world = [[], [], []]  # 0: 배경, 1: 오브젝트, 2: UI
 collision_pairs = {} #딕셔너리 전역 선언
@@ -29,11 +32,15 @@ def render():
 def add_collision_pair(group, a, b):
     if group not in collision_pairs:
         print(f'Added new group {group}')
-        collision_pairs[group] = [ [], [] ] #전역 딕셔너리 a, b 리스트로 초기화
+        collision_pairs[group] = [ [], [], [] ] #전역 딕셔너리 a, b 리스트로 초기화
      #전역 딕셔너리 등록
     if a:
-        collision_pairs[group][0].append(a)
-    if b:
+        
+        if type(a) == zombie.Zombie:
+            pass
+        else:
+            collision_pairs[group][0].append(a)
+    if type(b) == ball.Ball:
         collision_pairs[group][1].append(b)
 
 
