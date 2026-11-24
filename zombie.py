@@ -22,7 +22,10 @@ MIN_X, MAX_X = 800, 1600  # 좀비가 오가는 구간
 
 class Zombie:
     images = None
-
+    drawY = 200
+    drawX = 200
+    hitcnt = 0
+    
     def load_images(self):
         if Zombie.images is None:
             Zombie.images = {
@@ -34,6 +37,8 @@ class Zombie:
         self.x, self.y = random.randint(MIN_X, MAX_X), 150
         self.frame = random.randint(0, 9)
         self.dir = random.choice([-1, 1])
+  
+
 
     def update(self):
         dt = game_framework.frame_time
@@ -44,14 +49,22 @@ class Zombie:
         elif self.x < MIN_X:
             self.dir = 1
         self.x = clamp(MIN_X, self.x, MAX_X)
+        
+        
+
 
     def draw(self):
         image = Zombie.images['Walk'][int(self.frame)]
+
         if self.dir < 0:
-            image.composite_draw(0, 'h', self.x, self.y, 200, 200)
+            image.composite_draw(0, 'h', self.x, self.y, self.drawX, self.drawY)
         else:
-            image.draw(self.x, self.y, 200, 200)
+            image.draw(self.x, self.y,  self.drawX, self.drawY)
         draw_rectangle(*self.get_bb())
 
     def get_bb(self):
         return self.x - 100, self.y - 100, self.x + 100, self.y + 100
+    def handle_collision(self, group, other):
+            if group == 'ball:zombie':
+                self.ball_count += 1
+                
