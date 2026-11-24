@@ -6,7 +6,7 @@ from pico2d import *
 from sdl2 import (SDL_KEYDOWN, SDL_KEYUP, SDLK_LEFT, SDLK_RIGHT,
                   SDLK_SPACE)
 from transitions import Machine
-
+from zombie import Zombie
 import game_world
 from ball import Ball
 
@@ -144,7 +144,12 @@ class Boy:
         self.ball_count -= 1
         ball = Ball(self.x + self.face_dir * 40, self.y + 60, self.face_dir,
                     1 if self.item == 'Ball' else 2)
-        game_world.add_oject(ball)
+        game_world.add_oject(ball, 0)
+        
+        for o in game_world.world[1]:
+                        if (type(o) == Zombie):
+                            print("add coll")
+                            game_world.add_collision_pair('zombie:ball', ball, o)
         
 
     def pause(self):

@@ -32,15 +32,11 @@ def render():
 def add_collision_pair(group, a, b):
     if group not in collision_pairs:
         print(f'Added new group {group}')
-        collision_pairs[group] = [ [], [], [] ] #전역 딕셔너리 a, b 리스트로 초기화
+        collision_pairs[group] = [ [], []] #전역 딕셔너리 a, b 리스트로 초기화
      #전역 딕셔너리 등록
-    if a:
-        
-        if type(a) == zombie.Zombie:
-            pass
-        else:
-            collision_pairs[group][0].append(a)
-    if type(b) == ball.Ball:
+    if a: 
+        collision_pairs[group][0].append(a)
+    if b:
         collision_pairs[group][1].append(b)
 
 
