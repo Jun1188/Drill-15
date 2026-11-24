@@ -144,7 +144,7 @@ class Boy:
         self.ball_count -= 1
         ball = Ball(self.x + self.face_dir * 40, self.y + 60, self.face_dir,
                     1 if self.item == 'Ball' else 2)
-        game_world.add_oject(ball, 0)
+        game_world.add_object(ball, 0)
         
         for z in game_world.world[1]:
                         if (type(z) == Zombie):

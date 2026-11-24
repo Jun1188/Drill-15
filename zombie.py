@@ -59,11 +59,12 @@ class Zombie:
         if self.dir < 0:
             image.composite_draw(0, 'h', self.x, self.y, self.drawX, self.drawY)
         else:
-            image.draw(self.x, self.y,  self.drawX, self.drawY)
+            image.draw(self.x, self.y, self.drawX, self.drawY)
         draw_rectangle(*self.get_bb())
 
     def get_bb(self):
-        return self.x - 100, self.y - 100, self.x + 100, self.y + 100
+         return self.x - self.drawX / 2, self.y - self.drawY / 2, self.x + self.drawX / 2, self.y + self.drawY / 2
+        
     def handle_collision(self, group, other):
              if group == 'zombie:ball':
                     self.hitcnt += 1

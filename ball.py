@@ -45,3 +45,8 @@ class Ball:
         if group == 'boy:ball':
             game_world.remove_object(self) #소년이 볼을 지우는 게 아니라 
             #볼이 스스로를 제거하도록 (solid)
+        elif group == 'grass:ball':
+                    self.stopped = True
+        elif group == 'zombie:ball':
+                game_world.remove_object(self)
+                game_world.remove_collision_object(self)

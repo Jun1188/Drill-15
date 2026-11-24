@@ -8,7 +8,7 @@ world = [[], [], []]  # 0: 배경, 1: 오브젝트, 2: UI
 collision_pairs = {} #딕셔너리 전역 선언
 
 
-def add_oject(o, depth=1):
+def add_object(o, depth=1):
     world[depth].append(o)
 
 def add_objects(ol, depth=1):
